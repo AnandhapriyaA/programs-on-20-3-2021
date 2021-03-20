@@ -1,0 +1,36 @@
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class mains extends UserMainCode {
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		System.out.println("enter date");
+		String date = scan.nextLine();
+		validateDate(date);
+		scan.close();
+	}
+}
+class UserMainCode {
+	static boolean validateDate(String string) {
+		ArrayList<SimpleDateFormat> knownPatterns = new ArrayList<>();
+		knownPatterns.add(new SimpleDateFormat("dd.mm.yyyy"));
+		knownPatterns.add(new SimpleDateFormat("dd/mm/yy"));
+		knownPatterns.add(new SimpleDateFormat("dd-mm-yyyy"));
+		for (SimpleDateFormat pattern : knownPatterns) {
+			try {
+				Date timestamp = pattern.parse(string);
+				System.out.println("valid");
+				return true;
+			} catch (ParseException e) {
+				continue;
+			}
+		}
+		System.out.println("invalid");
+		return false;
+	}
+}
+
+
