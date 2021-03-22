@@ -1,0 +1,26 @@
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Scanner;
+
+public class mains extends UserMainCode {
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		System.out.println("enter date");
+		String date=scan.nextLine();
+		convertDateFormat(date);
+		scan.close();
+	}
+}
+class UserMainCode {
+	static String convertDateFormat(String string) throws ParseException {
+		SimpleDateFormat given = new SimpleDateFormat("dd/mm/yyyy");
+		SimpleDateFormat required = new SimpleDateFormat("dd-mm-yy");
+		Date date = given.parse(string);
+		String result = required.format(date);
+		System.out.println(result);
+		return result;
+	}
+}
+
+
